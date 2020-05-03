@@ -1,14 +1,20 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms'
 
 import { AppComponent } from './app.component';
+import { OffTransactionsComponent } from './off-transactions/off-transactions.component';
+import { AddTransactionsComponent } from './add-transactions/add-transactions.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    OffTransactionsComponent,
+    AddTransactionsComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
