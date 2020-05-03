@@ -37,7 +37,7 @@
                     <div class="form-group row">
                         <label for="date" class="col-sm-4 col-form-label">Date</label>
                         <div class="col-sm-8">
-                            <input class="form-control" id="date" name="date" placeholder="MM/DD/YYY" type="text" #date="ngModel" [(ngModel)]="model.date" required>
+                            <input class="form-control" id="date" name="date" placeholder="MM/DD/YYYY" type="text" #date="ngModel" [(ngModel)]="model.date" required>
                             <div [hidden]="date.valid || date.untouched" class="error">
                                 Please select date.
                             </div>
