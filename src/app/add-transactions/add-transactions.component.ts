@@ -9,11 +9,15 @@ import { AddTransactions } from './add-transactions';
 export class AddTransactionsComponent implements OnInit {
 
 
-  model = new AddTransactions('','','',null,null,null);
+  transName = ['Credit','Debit'];
+
+
+  model = new AddTransactions('',this.transName[0],'',null,null,null);
 
   @Input('transactionList') transDetails; 
 
   @Output() modelValue = new EventEmitter<any>();
+  
 
   constructor() { }
 
@@ -22,6 +26,10 @@ export class AddTransactionsComponent implements OnInit {
 
   onSubmit(){
     this.modelValue.emit(this.model);
+  }
+
+  resetSubmit(){
+    this.model = new AddTransactions('','','',null,null,null);
   }
 
 }

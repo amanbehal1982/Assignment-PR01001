@@ -88,6 +88,9 @@ h1{
                     font-weight: bold;
                     line-height: 1.5;
                     margin-top:20px;
+                    &:disabled{
+                        cursor: not-allowed;
+                    }
                 }
                 .cancel-btn{
                     padding:8px 15px;
