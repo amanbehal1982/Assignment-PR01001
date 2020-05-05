@@ -18,7 +18,7 @@ export class DataService {
   addTransaction(transaction: Transaction) {
     this.runningBalance = transaction.isCredit
         ? this.runningBalance + transaction.amount
-        : this.runningBalance - transaction.amount;
+        : this.runningBalance - transaction.amount;        
     const newTransaction = {
       ...transaction,
       runningBalance: this.runningBalance,

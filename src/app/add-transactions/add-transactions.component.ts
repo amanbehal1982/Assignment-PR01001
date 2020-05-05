@@ -10,9 +10,9 @@ import { Transaction } from '../models/transaction.model';
 export class AddTransactionsComponent {
 
 
-  transName = ['Credit','Debit'];
+  transName = ['Credit', 'Debit'];
   selectedTransactionType: string;
-  
+
   model: Transaction = {
     date: "",
     description: "",
@@ -21,15 +21,15 @@ export class AddTransactionsComponent {
     runningBalance: null
   };
 
-  @Input('transactionList') transDetails; 
+  @Input('transactionList') transDetails;
 
   @Output() modelValue = new EventEmitter<any>();
 
-  
 
-  constructor() { 
+
+  constructor() {
   }
-  
+
 
   onSubmit() {
     const updatedModel = { ...this.model };
@@ -37,17 +37,16 @@ export class AddTransactionsComponent {
     this.modelValue.emit(updatedModel);
   }
 
-  onTransactionTypeChange($event) {
-    console.log($event.target.value);
+
+  resetSubmit() {
+    this.model = {
+      date: "",
+      description: "",
+      isCredit: null,
+      amount: null,
+      runningBalance: null
+    };
   }
 
-  resetSubmit(){
-    this.model = {date: "",
-    description: "",
-    isCredit: null,
-    amount: null,
-    runningBalance: null};
-  }
-  
-  
+
 }

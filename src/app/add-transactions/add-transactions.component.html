@@ -49,7 +49,7 @@
                         <label for="transType" class="col-sm-4 col-form-label">Transaction Type</label>
                         <div class="col-sm-8">
                             <select id="transType" class="form-control custom-select" name="transType"
-                                #transType="ngModel" (change)="onTransactionTypeChange($event)" [(ngModel)]="selectedTransactionType" required>
+                                #transType="ngModel" [(ngModel)]="selectedTransactionType" required>
                                 <option *ngFor="let transName of transName" [value]="transName" [selected]="selectedTransactionType === transName">{{transName}}</option>
                             </select>
                             <div [hidden]="transType.valid || transType.untouched" class="error">
