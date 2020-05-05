@@ -1,27 +1,22 @@
 import { Component, OnInit } from '@angular/core';
-import { OffTransactions } from './off-transactions';
+import { DataService } from '../services/data/data.service';
+import { Transaction } from '../models/transaction.model';
 
 @Component({
   selector: 'app-off-transactions',
   templateUrl: './off-transactions.component.html',
   styleUrls: ['./off-transactions.component.scss']
 })
-export class OffTransactionsComponent implements OnInit {
+export class OffTransactionsComponent {
 
-  public TransactionList = [
-    new OffTransactions('02/20/2020','Misc Expenses',null,3000,1215),
-    new OffTransactions('02/18/2020','Printing sheets for office documents',null,285,4215),
-    new OffTransactions('02/18/2020','Snacks Party',null,500,4500),
-    new OffTransactions('02/17/2020','Credited to Office Account',5000,null,5000)
-  ]
+  
+  transactionList: Array<Transaction> = this.dataService.transactionList;
 
-  constructor() { }
 
-  ngOnInit(): void {
-  }
+  constructor( private readonly dataService: DataService ) { }
 
-  receiveValue(event){
-    this.TransactionList.unshift(event);
+  receiveValue(transaction: Transaction){
+    this.dataService.addTransaction(transaction);
   }
 
 }

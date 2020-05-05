@@ -5,6 +5,7 @@ import { FormsModule } from '@angular/forms'
 import { AppComponent } from './app.component';
 import { OffTransactionsComponent } from './off-transactions/off-transactions.component';
 import { AddTransactionsComponent } from './add-transactions/add-transactions.component';
+import { DataService } from './services/data/data.service';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,7 @@ import { AddTransactionsComponent } from './add-transactions/add-transactions.co
     BrowserModule,
     FormsModule
   ],
-  providers: [],
+  providers: [ DataService ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

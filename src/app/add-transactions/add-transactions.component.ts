@@ -1,35 +1,53 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { AddTransactions } from './add-transactions';
+import { Transaction } from '../models/transaction.model';
+
 
 @Component({
   selector: 'app-add-transactions',
   templateUrl: './add-transactions.component.html',
   styleUrls: ['./add-transactions.component.scss']
 })
-export class AddTransactionsComponent implements OnInit {
+export class AddTransactionsComponent {
 
 
   transName = ['Credit','Debit'];
-
-
-  model = new AddTransactions('',this.transName[0],'',null,null,null);
+  selectedTransactionType: string;
+  
+  model: Transaction = {
+    date: "",
+    description: "",
+    isCredit: null,
+    amount: null,
+    runningBalance: null
+  };
 
   @Input('transactionList') transDetails; 
 
   @Output() modelValue = new EventEmitter<any>();
+
   
 
-  constructor() { }
+  constructor() { 
+  }
+  
 
-  ngOnInit(): void {
+  onSubmit() {
+    const updatedModel = { ...this.model };
+    updatedModel.isCredit = this.selectedTransactionType === 'Credit';
+    this.modelValue.emit(updatedModel);
   }
 
-  onSubmit(){
-    this.modelValue.emit(this.model);
+  onTransactionTypeChange($event) {
+    console.log($event.target.value);
   }
 
   resetSubmit(){
-    this.model = new AddTransactions('','','',null,null,null);
+    this.model = {date: "",
+    description: "",
+    isCredit: null,
+    amount: null,
+    runningBalance: null};
   }
-
+  
+  
 }

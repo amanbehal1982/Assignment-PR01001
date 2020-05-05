@@ -14,12 +14,12 @@
         <th class="text-center">Debit</th>
         <th class="text-center">Running Balance</th>
     </tr>
-    <tr *ngFor="let transData of transDetails">
+    <tr *ngFor="let transData of transDetails;">
         <td>{{transData.date}}</td>
-        <td>{{transData.descption}}</td>
-        <td class="text-center">{{transData.credit}}</td>
-        <td class="text-center">{{transData.debit}}</td>
-        <td class="text-center">{{transData.runnigBalance}}</td>
+        <td>{{transData.description}}</td>
+        <td class="text-center">{{transData.isCredit ? transData.amount : ''}}</td>
+        <td class="text-center">{{!transData.isCredit ? transData.amount : ''}}</td>
+        <td class="text-center">{{transData.runningBalance}}</td>
     </tr>
 </table>
 
@@ -49,40 +49,20 @@
                         <label for="transType" class="col-sm-4 col-form-label">Transaction Type</label>
                         <div class="col-sm-8">
                             <select id="transType" class="form-control custom-select" name="transType"
-                                #transType="ngModel" [(ngModel)]="model.transaction" required>
-                                <option *ngFor="let transName of transName" [value]="transName">{{transName}}</option>
+                                #transType="ngModel" (change)="onTransactionTypeChange($event)" [(ngModel)]="selectedTransactionType" required>
+                                <option *ngFor="let transName of transName" [value]="transName" [selected]="selectedTransactionType === transName">{{transName}}</option>
                             </select>
                             <div [hidden]="transType.valid || transType.untouched" class="error">
                                 Please select any option.
                             </div>
                         </div>
                     </div>
-                    <div id="credit-box" class="form-group row">
-                        <label for="amount" class="col-sm-4 col-form-label">Amount</label>
-                        <div class="col-sm-8">
-                            <input type="number" class="form-control" id="Credit" name="number" #number="ngModel"
-                                [(ngModel)]="model.credit" required>
-                            <div [hidden]="number.valid || number.untouched" class="error">
-                                Please enter correct amount.
-                            </div>
-                        </div>
-                    </div>
-                    <div id="debit-box" class="form-group row">
-                        <label for="amount" class="col-sm-4 col-form-label">Amount</label>
-                        <div class="col-sm-8">
-                            <input type="number" class="form-control" id="Debit" name="number" #number="ngModel"
-                                [(ngModel)]="model.debit" required>
-                            <div [hidden]="number.valid || number.untouched" class="error">
-                                Please enter correct amount.
-                            </div>
-                        </div>
-                    </div>
                     <div class="form-group row">
-                        <label for="remBalance" class="col-sm-4 col-form-label">Running Balance</label>
+                        <label for="amount" class="col-sm-4 col-form-label">Amount</label>
                         <div class="col-sm-8">
-                            <input type="number" class="form-control" id="remBalance" name="remBalance"
-                                #remBalance="ngModel" [(ngModel)]="model.runnigBalance" required>
-                            <div [hidden]="remBalance.valid || remBalance.untouched" class="error">
+                            <input type="number" class="form-control" id="amount" name="number" #number="ngModel"
+                                [(ngModel)]="model.amount" required>
+                            <div [hidden]="number.valid || number.untouched" class="error">
                                 Please enter correct amount.
                             </div>
                         </div>
@@ -91,7 +71,7 @@
                         <label for="descp" class="col-sm-4 col-form-label">Description</label>
                         <div class="col-sm-8">
                             <textarea class="form-control" id="descp" name="descp" #descp="ngModel"
-                                [(ngModel)]="model.descption" required></textarea>
+                                [(ngModel)]="model.description" required></textarea>
                             <div [hidden]="descp.valid || descp.untouched" class="error">
                                 Please enter your description here.
                             </div>
